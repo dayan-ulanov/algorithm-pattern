@@ -5,20 +5,23 @@ const unsortedArray: number[] = [
 let operations = 0;
 
 const selectionSort = (arr: number[]): number[] => {
-  for (let i = 0; i < arr.length - 1; i++) {
-    let indexMin = i;
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < arr[indexMin]) {
-        indexMin = j;
+  let i = 0;
+  while (i < arr.length - 1) {
+    let minIndex = i;
+    let j = i + 1;
+    while (j < arr.length) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
       }
-      operations += 1;
+      operations++
+      j++
     }
-
-    if (indexMin !== i) {
-      [arr[i], arr[indexMin]] = [arr[indexMin], arr[i]];
+    if (arr[minIndex] !== i) {
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
     }
+    i++
   }
-  return arr;
+  return arr
 };
 
 console.log(selectionSort(unsortedArray), "operations:", operations);
